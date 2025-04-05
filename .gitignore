@@ -1,0 +1,48 @@
+# ========== Java / Spring Boot ==========
+recipe-optimizer-backend/HELP.md
+target/
+!.mvn/wrapper/maven-wrapper.jar
+!**/src/main/**/target/
+!**/src/test/**/target/
+
+### STS ###
+.apt_generated
+.classpath
+.factorypath
+.project
+.settings
+.springBeans
+.sts4-cache
+
+# ========== Python ==========
+recipe-optimizer-py/__pycache__/
+recipe-optimizer-py/*.py[cod]
+recipe-optimizer-py/.venv/
+recipe-optimizer-py/.env
+
+# ========== Secrets ==========
+**/application.properties
+.env
+
+# ========== IntelliJ IDEA ==========
+.idea/
+*.iws
+*.iml
+*.ipr
+
+# ========== NetBeans ==========
+/nbproject/private/
+/nbbuild/
+/dist/
+/nbdist/
+/.nb-gradle/
+build/
+!**/src/main/**/build/
+!**/src/test/**/build/
+
+# ========== VS Code ==========
+.vscode/
+
+# ========== System ==========
+.DS_Store
+Thumbs.db
