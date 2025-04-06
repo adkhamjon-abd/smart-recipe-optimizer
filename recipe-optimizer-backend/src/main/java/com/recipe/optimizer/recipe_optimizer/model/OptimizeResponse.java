@@ -5,9 +5,7 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 
 @Data
 @NoArgsConstructor
@@ -15,6 +13,6 @@ import java.util.Map;
 public class OptimizeResponse {
     private List<String> optimizedIngredients = new ArrayList<>();
     private List<Integer> amounts = new ArrayList<>();
-    private Map<String, Integer> score = new HashMap<>();
+    private Score score;
     private List<String> recommendations = new ArrayList<>();
 }
