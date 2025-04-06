@@ -6,6 +6,7 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import com.recipe.optimizer.recipe_optimizer.model.OptimizeRequest;
 import com.recipe.optimizer.recipe_optimizer.model.OptimizeResponse;
 import com.recipe.optimizer.recipe_optimizer.model.Score;
+import org.springframework.boot.autoconfigure.couchbase.CouchbaseProperties;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -53,6 +54,14 @@ public class OptimizeController {
         OutputStream os = process.getOutputStream(); // get the pipe to talk to python code
         OutputStreamWriter osw = new OutputStreamWriter(os); // tool to translate the text to binary
         BufferedWriter writer = new BufferedWriter(osw); // makes the writing more efficient
+        try {
+            writer.write(jsonInput);
+            writer.newLine();     // Optional: Helps signal end of input
+            writer.flush();       // 🔥 This is where it *actually* sends the text
+            writer.close();
+        } catch (IOException ioException){
+            System.out.println("Problem with sending the json data to python file" + ioException.getMessage());
+        }
 
 
 
