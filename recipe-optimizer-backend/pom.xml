@@ -59,17 +59,14 @@
 			<plugin>
 				<groupId>org.apache.maven.plugins</groupId>
 				<artifactId>maven-compiler-plugin</artifactId>
-				<version>3.11.0</version> <!-- ✅ add version -->
-
+				<version>3.11.0</version> <!-- Add version -->
 				<configuration>
-					<release>21</release> <!-- ✅ target Java 21 properly -->
-
+					<release>21</release> <!-- Change to Java 21 -->
 					<annotationProcessorPaths>
 						<path>
 							<groupId>org.projectlombok</groupId>
 							<artifactId>lombok</artifactId>
-							<version>1.18.30</version> <!-- ✅ add version -->
-
+							<version>1.18.30</version> <!-- Add version -->
 						</path>
 					</annotationProcessorPaths>
 				</configuration>
