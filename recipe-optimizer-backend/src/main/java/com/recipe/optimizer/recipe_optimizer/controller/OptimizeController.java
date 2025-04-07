@@ -6,16 +6,12 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import com.recipe.optimizer.recipe_optimizer.model.OptimizeRequest;
 import com.recipe.optimizer.recipe_optimizer.model.OptimizeResponse;
 import com.recipe.optimizer.recipe_optimizer.model.Score;
-import org.springframework.boot.autoconfigure.couchbase.CouchbaseProperties;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import java.io.BufferedWriter;
-import java.io.IOException;
-import java.io.OutputStream;
-import java.io.OutputStreamWriter;
+import java.io.*;
 import java.util.List;
 
 @RestController
@@ -65,6 +61,25 @@ public class OptimizeController {
 
 
 
+        StringBuilder output = new StringBuilder();
+
+        try (BufferedReader reader = new BufferedReader(new InputStreamReader(process.getInputStream()))){
+            String line;
+            while((line = reader.readLine()) != null){
+                output.append(line);
+            }
+        }catch (IOException ioException){
+            System.out.println("Failed to read the output from python");
+        }
+
+        String jsonOutput = output.toString();
+
+        OptimizeResponse optimizeResponse = null;
+        try {
+            optimizeResponse = mapper.readValue(jsonOutput, OptimizeResponse.class);
+        } catch (JsonProcessingException e) {
+            System.out.println("Failed to deserialize");
+        }
         return optimizeResponse;
     }
 }
